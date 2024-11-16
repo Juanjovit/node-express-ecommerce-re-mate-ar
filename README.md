@@ -11,5 +11,3 @@ Datos de usuarios ya registrados:
 
     Email: juan@mail.com
     Password: usuario
-
-Alumno: Juan José Vitali

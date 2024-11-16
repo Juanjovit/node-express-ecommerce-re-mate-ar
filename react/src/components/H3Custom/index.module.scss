@@ -1,0 +1,14 @@
+@import "../../styles/colors";
+@import "../../styles/fonts";
+
+.title {
+  padding-bottom: 2rem;
+
+  color: $white-1 !important;
+  font-size: $font-size-34;
+  font-family: "Cormorant Garamond", serif;
+}
+
+.alignCenter {
+  text-align: center;
+}

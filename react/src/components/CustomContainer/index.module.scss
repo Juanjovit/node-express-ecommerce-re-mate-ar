@@ -1,0 +1,11 @@
+@import "../../styles/index.scss";
+@import "../../styles/colors";
+
+@include media-breakpoint-up(sm) {
+  .customContainer {
+    padding-top: 8rem;
+
+    padding-left: 5vw !important;
+    padding-right: 5vw !important;
+  }
+}

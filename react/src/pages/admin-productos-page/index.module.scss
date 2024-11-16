@@ -1,0 +1,45 @@
+@import "../../styles/colors";
+
+.productsDisplay {
+  background-color: $green;
+
+  padding-top: 8rem;
+  padding-bottom: 4rem;
+}
+
+.image {
+  max-width: 150px;
+}
+
+.buttonsContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.customButton {
+  max-width: 300px;
+  margin-bottom: 10px;
+}
+
+.customButton:hover {
+  background-color: $white-1;
+  color: $black-1;
+}
+
+.blueButton {
+  background-color: $blue;
+  border: 1px solid $blue;
+  color: $white-1;
+}
+
+.greenButton {
+  background-color: $green;
+  border: 1px solid $white-1;
+  color: $white-1;
+}
+
+.redButton {
+  background-color: $red;
+  border: 1px solid $red;
+  color: $white-1;
+}

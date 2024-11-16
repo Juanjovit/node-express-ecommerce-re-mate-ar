@@ -1,0 +1,70 @@
+@import "../../styles/index.scss";
+@import "../../styles/colors";
+@import "../../styles/fonts";
+
+.productsDisplay1 {
+  background-color: $green;
+
+  padding-top: 8rem;
+  padding-bottom: 4rem;
+}
+
+.productsDisplay2 {
+  background-color: $brown;
+
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.productsDisplay3 {
+  background-color: $green;
+
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.divContainer {
+  margin: auto;
+}
+
+.image {
+  display: flex;
+  max-width: 300px;
+  margin: auto;
+}
+
+.text {
+  display: flex;
+  align-items: center;
+
+  font-size: $font-size-24;
+  color: $white-1;
+  font-weight: 100;
+
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+@include media-breakpoint-up(md) {
+  .divContainer {
+    display: flex;
+  }
+
+  .image {
+    max-width: none;
+    width: 40vw;
+    display: flex;
+    margin: auto;
+  }
+
+  .text {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+}
+
+@include media-breakpoint-up(xxl) {
+}

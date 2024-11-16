@@ -1,0 +1,19 @@
+@import "../../styles/colors";
+
+.callToAction {
+  padding: 5px 20px 5px 20px;
+
+  border: solid 1px $white-1;
+  border-radius: 20px;
+
+  font-family: "Cormorant Garamond", serif;
+  color: $white-1;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.callToAction:hover {
+  color: $dark-green;
+  // font-weight: 800;
+  background-color: $white-1;
+}

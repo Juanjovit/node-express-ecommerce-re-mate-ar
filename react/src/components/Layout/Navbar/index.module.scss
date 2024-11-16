@@ -1,0 +1,112 @@
+@import "../../../styles/index.scss";
+@import "../../../styles/colors";
+
+.customNavbar {
+  padding-top: 15px;
+  padding-left: 5vw !important;
+  padding-right: 5vw !important;
+  width: 100%;
+  position: sticky !important;
+  top: 0;
+  left: 0;
+  margin-top: -80px;
+  z-index: 5;
+  transition: 1s;
+}
+
+.logo {
+  margin-right: 50px !important;
+  color: $white-1 !important;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 36px !important;
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+.menuIcon {
+  display: block;
+  position: absolute;
+  right: 22px;
+  top: 25px;
+  color: $white-1;
+
+  width: 30px;
+  height: 30px;
+
+  background: none;
+  border: none;
+
+  svg {
+    width: 30px !important;
+    height: 30px !important;
+  }
+}
+
+.nav {
+  position: absolute;
+  transition: 1s;
+  left: 0;
+  width: 100%;
+}
+
+.backgroundGreen {
+  background-color: $green;
+}
+
+.navActive {
+  height: 100vh;
+
+  .list {
+    .navButton,
+    .navLoginRegisterButton {
+      color: $white-1;
+    }
+  }
+}
+
+.navHidden {
+  height: 0vh;
+
+  .list {
+    .navButton,
+    .navLoginRegisterButton {
+      color: transparent;
+    }
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .customNavbar {
+    display: flex;
+  }
+
+  .menuIcon {
+    display: none;
+  }
+
+  .nav {
+    position: inherit;
+    display: flex;
+  }
+
+  .list {
+    display: flex;
+    flex-direction: row;
+
+    list-style: none;
+  }
+
+  .navButton,
+  .navLoginRegisterButton {
+    color: $white-1 !important;
+    margin-top: 11px;
+    margin-right: 0px;
+  }
+}

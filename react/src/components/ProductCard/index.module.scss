@@ -1,0 +1,30 @@
+@import "../../styles/colors";
+@import "../../styles/fonts";
+
+.link {
+  text-decoration: none;
+}
+
+.card {
+  margin: auto;
+  max-width: 300px;
+
+  margin-bottom: 2rem;
+}
+
+.image {
+  display: block;
+
+  margin: auto;
+  width: 100%;
+  max-width: 300px;
+}
+
+.title {
+  text-decoration: none;
+  color: $white-1;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: $font-size-28;
+}

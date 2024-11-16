@@ -1,0 +1,169 @@
+[{
+  "_id": {
+    "$oid": "66ccd4edaa9051c58f4a508a"
+  },
+  "title": "Mate clasico de madera",
+  "description": "Mate clásico de madera, ideal para disfrutar de un buen mate con un toque tradicional y elegante.",
+  "price": 25000,
+  "image": "http://localhost:2022/images/mate-clasico-madera.jpg",
+  "type": "mate",
+  "imageAlt": "mate-clasico-madera",
+  "isPublic": true,
+  "ventasTotales": 0
+},
+{
+  "_id": {
+    "$oid": "66ce19498dd7b83e86c33840"
+  },
+  "title": "Mate de madera pintado verde claro",
+  "description": "Mate de madera pintado en un atractivo verde claro, perfecto para quienes buscan un diseño fresco y moderno.",
+  "price": 8000,
+  "image": "http://localhost:2022/images/mate-madera-verde-claro.jpg",
+  "type": "mate",
+  "imageAlt": "mate-madera-verde-claro",
+  "isPublic": true,
+  "ventasTotales": 0
+},
+{
+  "_id": {
+    "$oid": "66ce1ddb8dd7b83e86c33849"
+  },
+  "title": "Mate de madera verde oscuro",
+  "description": "Mate de madera con un acabado verde oscuro, ofreciendo un estilo sofisticado y atemporal.",
+  "price": 7000,
+  "image": "http://localhost:2022/images/mate-madera-verde-oscuro.jpg",
+  "type": "mate",
+  "imageAlt": "mate-madera-verde-oscuro",
+  "isPublic": false,
+  "ventasTotales": 0
+},
+{
+  "_id": {
+    "$oid": "66ce1ddb8dd7b83e86c3384a"
+  },
+  "title": "Mate Pampa blanco",
+  "description": "Mate clásico con diseño blanco pampa, ideal para quienes prefieren un estilo limpio y elegante.",
+  "price": 11000,
+  "image": "http://localhost:2022/images/mate-pampa-blanco.jpg",
+  "type": "mate",
+  "imageAlt": "mate-pampa-blanco",
+  "isPublic": true,
+  "ventasTotales": 0
+},
+{
+  "_id": {
+    "$oid": "66ce1ddb8dd7b83e86c3384b"
+  },
+  "title": "Mate Pampa negro",
+  "description": "Mate elegante de color negro con diseño pampa, perfecto para quienes buscan un toque moderno y sofisticado.",
+  "price": 11000,
+  "image": "http://localhost:2022/images/mate-pampa-negro.jpg",
+  "type": "mate",
+  "imageAlt": "mate-pampa-negro",
+  "isPublic": true,
+  "ventasTotales": 0
+},
+{
+  "_id": {
+    "$oid": "66ce1ddb8dd7b83e86c3384c"
+  },
+  "title": "Mate Pampa rosa",
+  "description": "Mate estilizado en color rosa con diseño pampa, para un toque de color y estilo en cada sorbo.",
+  "price": 11000,
+  "image": "http://localhost:2022/images/mate-pampa-rosa.jpg",
+  "type": "mate",
+  "imageAlt": "mate-pampa-rosa",
+  "isPublic": true,
+  "ventasTotales": 0
+},
+{
+  "_id": {
+    "$oid": "66ce1ddb8dd7b83e86c3384d"
+  },
+  "title": "Mate Pampa verde",
+  "description": "Mate vibrante en color verde con diseño pampa, que añade un toque de frescura y originalidad",
+  "price": 11000,
+  "image": "http://localhost:2022/images/mate-pampa-verde.jpg",
+  "type": "mate",
+  "imageAlt": "mate-pampa-verde",
+  "isPublic": true,
+  "ventasTotales": 0
+},
+{
+  "_id": {
+    "$oid": "66ce1ddb8dd7b83e86c3384e"
+  },
+  "title": "Mate Stanley rosa",
+  "description": "Mate rosa duradero y estilizado de Stanley, ideal para quienes buscan calidad y un diseño atractivo.",
+  "price": 50000,
+  "image": "http://localhost:2022/images/mate-stanley-rosa.jpg",
+  "type": "mate",
+  "imageAlt": "mate-stanley-rosa",
+  "isPublic": true,
+  "ventasTotales": 0
+},
+{
+  "_id": {
+    "$oid": "66ce1ddb8dd7b83e86c3384f"
+  },
+  "title": "Mate Stanley verde",
+  "description": "Mate verde duradero y elegante de Stanley, perfecto para aquellos que aprecian la calidad y el estilo.",
+  "price": 50000,
+  "image": "http://localhost:2022/images/mate-stanley-verde.jpg",
+  "type": "mate",
+  "imageAlt": "mate-stanley-verde",
+  "isPublic": true,
+  "ventasTotales": 1
+},
+{
+  "_id": {
+    "$oid": "66ce1ddb8dd7b83e86c33850"
+  },
+  "title": "Termo Discovery",
+  "description": "Termo de alta calidad, ideal para mantener tus bebidas a la temperatura perfecta durante tus aventuras.",
+  "price": 52000,
+  "image": "http://localhost:2022/images/termo-discovery.jpg",
+  "type": "termo",
+  "imageAlt": "termo-discovery",
+  "isPublic": true,
+  "ventasTotales": 0
+},
+{
+  "_id": {
+    "$oid": "66ce1ddb8dd7b83e86c33851"
+  },
+  "title": "Termo Montagne",
+  "description": "Termo confiable para el uso diario, perfecto para mantener tus bebidas calientes o frías durante todo el día.",
+  "price": 102000,
+  "image": "http://localhost:2022/images/termo-montagne.jpg",
+  "type": "termo",
+  "imageAlt": "termo-montagne",
+  "isPublic": true,
+  "ventasTotales": 0
+},
+{
+  "_id": {
+    "$oid": "66ce1ddb8dd7b83e86c33852"
+  },
+  "title": "Termo Stanley rosa",
+  "description": "Termo rosa estilizado de Stanley, combina funcionalidad con un diseño moderno y atractivo.",
+  "price": 140000,
+  "image": "http://localhost:2022/images/termo-stanley-rosa.jpg",
+  "type": "termo",
+  "imageAlt": "termo-stanley-rosa",
+  "isPublic": true,
+  "ventasTotales": 0
+},
+{
+  "_id": {
+    "$oid": "66ce1ddb8dd7b83e86c33853"
+  },
+  "title": "Termo Stanley verde",
+  "description": "Termo verde elegante de Stanley, diseñado para mantener la temperatura de tus bebidas con un estilo contemporáneo.",
+  "price": 140000,
+  "image": "http://localhost:2022/images/termo-stanley-verde.jpg",
+  "type": "termo",
+  "imageAlt": "termo-stanley-verde",
+  "isPublic": true,
+  "ventasTotales": 1
+}]

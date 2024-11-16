@@ -1,0 +1,17 @@
+@import "../../styles/colors";
+
+.customButton {
+  padding: 5px 20px 5px 20px;
+
+  border: solid 1px $white-1;
+
+  background-color: $white-1;
+  text-decoration: none;
+
+  width: 100%;
+}
+
+.customButton:hover {
+  border: solid 1px $white-1;
+  color: $white-1;
+}

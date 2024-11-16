@@ -1,0 +1,22 @@
+@import "../../styles/colors";
+
+.productsDisplay {
+  background-color: $green;
+
+  padding-top: 8rem;
+  padding-bottom: 4rem;
+}
+
+.compraDiv {
+}
+
+.image {
+  max-width: 150px;
+}
+
+.precioFinal {
+  background-color: $white-1;
+  padding: 10px;
+
+  text-align: end;
+}

@@ -1,0 +1,32 @@
+[{
+  "_id": {
+    "$oid": "66f2ea5a403fa582d7b1c983"
+  },
+  "compra": [
+    {
+      "_id": "66ce1ddb8dd7b83e86c3384f",
+      "title": "Mate Stanley verde",
+      "description": "Mate verde duradero y elegante de Stanley, perfecto para aquellos que aprecian la calidad y el estilo.",
+      "price": 50000,
+      "image": "http://localhost:2022/images/mate-stanley-verde.jpg",
+      "type": "mate",
+      "imageAlt": "mate-stanley-verde",
+      "isPublic": true,
+      "ventasTotales": 0,
+      "quantity": 1
+    },
+    {
+      "_id": "66ce1ddb8dd7b83e86c33853",
+      "title": "Termo Stanley verde",
+      "description": "Termo verde elegante de Stanley, diseñado para mantener la temperatura de tus bebidas con un estilo contemporáneo.",
+      "price": 140000,
+      "image": "http://localhost:2022/images/termo-stanley-verde.jpg",
+      "type": "termo",
+      "imageAlt": "termo-stanley-verde",
+      "isPublic": true,
+      "ventasTotales": 0,
+      "quantity": 1
+    }
+  ],
+  "userId": "66d1df23c7b4b62f324ec489"
+}]

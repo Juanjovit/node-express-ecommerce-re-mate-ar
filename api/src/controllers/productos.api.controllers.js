@@ -1,5 +1,10 @@
 import ProductosService from "../services/productos.services.js";
 import path from "path";
+import { PUBLIC_BASE_URL } from "../config/env.js";
+
+function getImageUrl(fileName) {
+  return `${PUBLIC_BASE_URL}/images/${fileName}`;
+}
 
 function getPublicProductosMasVendidos(req, res) {
   const filter = { isPublic: true };
@@ -57,13 +62,9 @@ function agregarProducto(req, res) {
   }
 
   const image = req.files.image;
-  const imagePath = `http://localhost:2022/images/${Date.now()}_${image.name}`;
-
-  const uploadPath = path.join(
-    "public",
-    "images",
-    `${Date.now()}_${image.name}`
-  );
+  const fileName = `${Date.now()}_${image.name}`;
+  const imagePath = getImageUrl(fileName);
+  const uploadPath = path.join("public", "images", fileName);
 
   image.mv(uploadPath, (err) => {
     if (err) {
@@ -100,14 +101,9 @@ function editarProducto(req, res) {
     isNewImage = true;
 
     const newImage = req.files.image;
-
-    imagePath = `http://localhost:2022/images/${Date.now()}_${newImage.name}`;
-
-    const uploadPath = path.join(
-      "public",
-      "images",
-      `${Date.now()}_${newImage.name}`
-    );
+    const fileName = `${Date.now()}_${newImage.name}`;
+    imagePath = getImageUrl(fileName);
+    const uploadPath = path.join("public", "images", fileName);
 
     newImage.mv(uploadPath, (err) => {
       if (err) {

@@ -1,0 +1,38 @@
+# dependencies
+node_modules/
+
+# env
+.env
+.env.*
+!.env.example
+!api/.env.example
+!react/.env.example
+
+# build
+dist/
+build/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# editor
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# React (Vite)
+react/node_modules/
+react/dist/
+
+# API
+api/node_modules/
+
+# Local planning and handover docs
+GUIDE_DEPLOYMENT_PLAN.md
+HANDOVER_JOURNAL.md

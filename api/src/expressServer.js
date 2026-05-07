@@ -8,10 +8,24 @@ import cors from "cors";
 import ProductosApiRouter from "./routes/productos.api.routes.js";
 import UsuariosApiRouter from "./routes/usuarios.api.routes.js";
 import ComprasApiRouter from "./routes/compras.api.routes.js";
+import { CORS_ORIGIN, PORT } from "./config/env.js";
 
 const app = express();
 app.set("view engine", "ejs");
-app.use(cors());
+
+const corsOrigins = CORS_ORIGIN.split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
+if (CORS_ORIGIN === "*" || corsOrigins.length === 0) {
+  app.use(cors());
+} else {
+  app.use(
+    cors({
+      origin: corsOrigins,
+    }),
+  );
+}
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -29,6 +43,6 @@ app.use("/api/productos", ProductosApiRouter);
 app.use("/api/usuarios", UsuariosApiRouter);
 app.use("/api/compras", ComprasApiRouter);
 
-app.listen(2022, function () {
-  console.log("El servidor esta ejecutando! http://localhost:2022");
+app.listen(PORT, function () {
+  console.log(`El servidor esta ejecutando! http://localhost:${PORT}`);
 });

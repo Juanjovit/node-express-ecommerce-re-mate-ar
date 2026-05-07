@@ -1,5 +1,7 @@
+import { API_BASE_URL } from "./api";
+
 async function login(email: string, password: string) {
-  return fetch("http://localhost:2022/api/usuarios/login/", {
+  return fetch(`${API_BASE_URL}/api/usuarios/login/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -19,7 +21,7 @@ async function logout() {
   const storedToken = localStorage.getItem("token");
   const token = storedToken ? JSON.parse(storedToken) : null;
 
-  return fetch("http://localhost:2022/api/usuarios/logout/", {
+  return fetch(`${API_BASE_URL}/api/usuarios/logout/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -41,7 +43,7 @@ async function register({
   email: string;
   password: string;
 }) {
-  return fetch("http://localhost:2022/api/usuarios/register/", {
+  return fetch(`${API_BASE_URL}/api/usuarios/register/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

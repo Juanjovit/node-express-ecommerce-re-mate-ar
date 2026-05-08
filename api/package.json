@@ -2,16 +2,17 @@
   "name": "tp2",
   "version": "1.0.0",
   "description": "",
-  "main": "expressServer.js",
+  "main": "src/server.js",
   "type": "module",
   "scripts": {
-    "server": "cls && nodemon src/expressServer.js"
+    "server": "cls && nodemon src/server.js"
   },
   "author": "Juan José Vitali",
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
     "express-fileupload": "^1.5.1",

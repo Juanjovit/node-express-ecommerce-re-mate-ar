@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 
 import UsuariosService from "../services/usuarios.services.js";
 import TokensService from "../services/tokens.services.js";
+import { JWT_SECRET } from "../config/env.js";
 
 const login = (req, res) => {
   const usuario = {
@@ -11,7 +12,7 @@ const login = (req, res) => {
 
   UsuariosService.login(usuario)
     .then(function (usuario) {
-      const token = jwt.sign({ id: usuario._id }, "CLAVE_SECRETA");
+      const token = jwt.sign({ id: usuario._id }, JWT_SECRET);
 
       TokensService.create({ token: token, user_id: usuario._id })
         .then(function () {

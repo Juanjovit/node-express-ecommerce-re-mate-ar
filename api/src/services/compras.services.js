@@ -1,12 +1,13 @@
-import { MongoClient, ObjectId } from "mongodb";
+import { MongoClient } from "mongodb";
+import { MONGO_DB_NAME, MONGO_URI } from "../config/env.js";
 
-const client = new MongoClient("mongodb://127.0.0.1:27017");
+const client = new MongoClient(MONGO_URI);
 
 async function confirmar(compraData) {
   await client.connect();
 
   const compra = await client
-    .db("AH_P1")
+    .db(MONGO_DB_NAME)
     .collection("Compras")
     .insertOne(compraData);
 
@@ -17,7 +18,7 @@ async function getAllByUser(userId) {
   await client.connect();
 
   const compras = await client
-    .db("AH_P1")
+    .db(MONGO_DB_NAME)
     .collection("Compras")
     .find({ userId })
     .toArray();
@@ -29,3 +30,4 @@ export default {
   confirmar,
   getAllByUser,
 };
+

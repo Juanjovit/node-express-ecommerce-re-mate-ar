@@ -1,5 +1,17 @@
+import { API_BASE_URL } from "./api";
+
+interface ProductoPayload {
+  id?: string;
+  title: string;
+  description: string;
+  price: number;
+  type: "mate" | "termo";
+  image: string;
+  imageAlt: string;
+}
+
 async function getAllPublicProductos() {
-  return fetch(`http://localhost:2022/api/productos`, {
+  return fetch(`${API_BASE_URL}/api/productos`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -8,7 +20,7 @@ async function getAllPublicProductos() {
 }
 
 async function getPublicProductosMasVendidos() {
-  return fetch(`http://localhost:2022/api/productos/masVendidos`, {
+  return fetch(`${API_BASE_URL}/api/productos/masVendidos`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -17,7 +29,7 @@ async function getPublicProductosMasVendidos() {
 }
 
 async function getAllProductos() {
-  return fetch(`http://localhost:2022/api/productos/all`, {
+  return fetch(`${API_BASE_URL}/api/productos/all`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -28,7 +40,7 @@ async function getAllProductos() {
 async function getAllProductosByType({ filter }: { filter: "mate" | "termo" }) {
   const filterParam = `?type=${filter}`;
 
-  return fetch(`http://localhost:2022/api/productos${filterParam}`, {
+  return fetch(`${API_BASE_URL}/api/productos${filterParam}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -37,7 +49,7 @@ async function getAllProductosByType({ filter }: { filter: "mate" | "termo" }) {
 }
 
 async function getProductoById({ id }: { id: string | undefined }) {
-  return fetch(`http://localhost:2022/api/productos/${id}`, {
+  return fetch(`${API_BASE_URL}/api/productos/${id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -45,10 +57,13 @@ async function getProductoById({ id }: { id: string | undefined }) {
   }).then((response) => response.json());
 }
 
-async function agregarProducto(producto: FormData) {
-  return fetch("http://localhost:2022/api/productos/agregar/", {
+async function agregarProducto(producto: ProductoPayload) {
+  return fetch(`${API_BASE_URL}/api/productos/agregar/`, {
     method: "POST",
-    body: producto,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(producto),
   }).then((response) =>
     response.json().then((data) => {
       if (!response.ok) {
@@ -60,7 +75,7 @@ async function agregarProducto(producto: FormData) {
 }
 
 async function eliminarProducto(id: string) {
-  return fetch("http://localhost:2022/api/productos/eliminar/", {
+  return fetch(`${API_BASE_URL}/api/productos/eliminar/`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -76,10 +91,13 @@ async function eliminarProducto(id: string) {
   );
 }
 
-async function editarProducto(producto: FormData) {
-  return fetch("http://localhost:2022/api/productos/editar/", {
+async function editarProducto(producto: ProductoPayload) {
+  return fetch(`${API_BASE_URL}/api/productos/editar/`, {
     method: "PUT",
-    body: producto,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(producto),
   }).then((response) =>
     response.json().then((data) => {
       if (!response.ok) {
@@ -91,7 +109,7 @@ async function editarProducto(producto: FormData) {
 }
 
 async function publicarOcultarProducto(id: string, isPublic: boolean) {
-  return fetch("http://localhost:2022/api/productos/publicarOcultar/", {
+  return fetch(`${API_BASE_URL}/api/productos/publicarOcultar/`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

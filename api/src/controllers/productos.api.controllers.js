@@ -1,5 +1,11 @@
 import ProductosService from "../services/productos.services.js";
 import path from "path";
+import { PUBLIC_BASE_URL } from "../config/env.js";
+import { isValidProductImageFileName } from "../config/product-images.js";
+
+function getImageUrl(fileName) {
+  return `${PUBLIC_BASE_URL}/images/${fileName}`;
+}
 
 function getPublicProductosMasVendidos(req, res) {
   const filter = { isPublic: true };
@@ -50,28 +56,33 @@ function getProductoById(req, res) {
 }
 
 function agregarProducto(req, res) {
-  const { title, description, price, type, imageAlt } = req.body;
+  const { title, description, price, type, image, imageAlt } = req.body;
 
-  if (!req.files || !req.files.image) {
-    return res.status(400).json({ message: "Es necesario agregar una imagen" });
+  if (!image || !isValidProductImageFileName(image)) {
+    return res
+      .status(400)
+      .json({ message: "Selecciona una imagen valida de la lista." });
   }
 
-  const image = req.files.image;
-  const imagePath = `http://localhost:2022/images/${Date.now()}_${image.name}`;
+  const imagePath = getImageUrl(image);
 
-  const uploadPath = path.join(
-    "public",
-    "images",
-    `${Date.now()}_${image.name}`
-  );
-
-  image.mv(uploadPath, (err) => {
-    if (err) {
-      return res
-        .status(500)
-        .json({ message: "Error al subir la imagen", error: err });
-    }
-  });
+  // Legacy upload flow (disabled for Vercel static-hosting compatibility):
+  // if (!req.files || !req.files.image) {
+  //   return res.status(400).json({ message: "Es necesario agregar una imagen" });
+  // }
+  //
+  // const image = req.files.image;
+  // const fileName = `${Date.now()}_${image.name}`;
+  // const imagePath = getImageUrl(fileName);
+  // const uploadPath = path.join("public", "images", fileName);
+  //
+  // image.mv(uploadPath, (err) => {
+  //   if (err) {
+  //     return res
+  //       .status(500)
+  //       .json({ message: "Error al subir la imagen", error: err });
+  //   }
+  // });
 
   const newProducto = {
     title,
@@ -93,30 +104,31 @@ function agregarProducto(req, res) {
 function editarProducto(req, res) {
   const { id, title, description, price, type, image, imageAlt } = req.body;
 
-  let imagePath = image;
-  let isNewImage = false;
-
-  if (req.files && req.files.image) {
-    isNewImage = true;
-
-    const newImage = req.files.image;
-
-    imagePath = `http://localhost:2022/images/${Date.now()}_${newImage.name}`;
-
-    const uploadPath = path.join(
-      "public",
-      "images",
-      `${Date.now()}_${newImage.name}`
-    );
-
-    newImage.mv(uploadPath, (err) => {
-      if (err) {
-        return res
-          .status(500)
-          .json({ message: "Error al subir la imagen", error: err });
-      }
-    });
+  if (!image || !isValidProductImageFileName(image)) {
+    return res
+      .status(400)
+      .json({ message: "Selecciona una imagen valida de la lista." });
   }
+  const imagePath = getImageUrl(image);
+  const isNewImage = false;
+
+  // Legacy upload flow (disabled for Vercel static-hosting compatibility):
+  // if (req.files && req.files.image) {
+  //   isNewImage = true;
+  //
+  //   const newImage = req.files.image;
+  //   const fileName = `${Date.now()}_${newImage.name}`;
+  //   imagePath = getImageUrl(fileName);
+  //   const uploadPath = path.join("public", "images", fileName);
+  //
+  //   newImage.mv(uploadPath, (err) => {
+  //     if (err) {
+  //       return res
+  //         .status(500)
+  //         .json({ message: "Error al subir la imagen", error: err });
+  //     }
+  //   });
+  // }
 
   const newProducto = {
     id,

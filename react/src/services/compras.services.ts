@@ -1,7 +1,8 @@
 import { Cart } from "../pages/carrito-page/CarritoPage";
+import { API_BASE_URL } from "./api";
 
 async function confirmar(compra: Cart, userId: string) {
-  return fetch("http://localhost:2022/api/compras/confirmar/", {
+  return fetch(`${API_BASE_URL}/api/compras/confirmar/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -18,7 +19,7 @@ async function confirmar(compra: Cart, userId: string) {
 }
 
 async function getAllByUser(userId: string) {
-  return fetch(`http://localhost:2022/api/compras/${userId}`, {
+  return fetch(`${API_BASE_URL}/api/compras/${userId}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

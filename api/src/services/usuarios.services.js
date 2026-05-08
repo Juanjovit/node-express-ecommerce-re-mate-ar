@@ -1,7 +1,8 @@
-import { MongoClient, ObjectId } from "mongodb";
+import { MongoClient } from "mongodb";
 import bcrypt from "bcrypt";
+import { MONGO_DB_NAME, MONGO_URI } from "../config/env.js";
 
-const client = new MongoClient("mongodb://127.0.0.1:27017");
+const client = new MongoClient(MONGO_URI);
 
 async function registrarUsuario(usuario) {
   const { name, email, password, isAdmin } = usuario;
@@ -9,7 +10,7 @@ async function registrarUsuario(usuario) {
   await client.connect();
 
   const existeUsuario = await client
-    .db("AH_P1")
+    .db(MONGO_DB_NAME)
     .collection("Usuarios")
     .findOne({ email });
 
@@ -21,7 +22,7 @@ async function registrarUsuario(usuario) {
   const passwordHash = await bcrypt.hash(password, salt);
 
   await client
-    .db("AH_P1")
+    .db(MONGO_DB_NAME)
     .collection("Usuarios")
     .insertOne({ name, email, password: passwordHash, isAdmin });
 
@@ -34,7 +35,7 @@ async function login(usuario) {
   await client.connect();
 
   const userFound = await client
-    .db("AH_P1")
+    .db(MONGO_DB_NAME)
     .collection("Usuarios")
     .findOne({ email });
 
@@ -55,3 +56,4 @@ export default {
   login,
   registrarUsuario,
 };
+

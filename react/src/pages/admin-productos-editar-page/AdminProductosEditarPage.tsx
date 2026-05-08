@@ -8,6 +8,11 @@ import { useEffect, useState } from "react";
 import { ErrorMessage } from "../../components/ErrorMessage/ErrorMessage";
 import { CustomImage } from "../../components/CustomImage/CustomImage.js";
 import { CustomButton } from "../../components/CustomButton/CustomButton.js";
+import {
+  PRODUCT_IMAGE_OPTIONS,
+  buildProductImageUrl,
+  extractImageFileName,
+} from "../../constants/product-images.js";
 
 const AdminProductosEditarPage: React.FC = () => {
   const { id } = useParams();
@@ -18,7 +23,7 @@ const AdminProductosEditarPage: React.FC = () => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
   const [type, setType] = useState("");
-  const [image, setImage] = useState<File | string | null>(null);
+  const [image, setImage] = useState("");
   const [imageAlt, setImageAlt] = useState("");
 
   const [titleError, setTitleError] = useState("");
@@ -54,9 +59,8 @@ const AdminProductosEditarPage: React.FC = () => {
     if (typeError) setTypeError("");
   };
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0] || null;
-    setImage(file);
+  const handleImageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setImage(e.target.value);
     if (imageError) setImageError("");
   };
 
@@ -94,29 +98,44 @@ const AdminProductosEditarPage: React.FC = () => {
       );
     }
 
-    const stringPrice = price.toString();
-
-    const formData = new FormData();
-    formData.append("id", id || "");
-    formData.append("title", title);
-    formData.append("description", description);
-    formData.append("price", stringPrice);
-    formData.append("type", type);
-    if (typeof image === "string") {
-      formData.append("image", image);
-    } else if (image instanceof File) {
-      formData.append("image", image);
-    }
-    formData.append("imageAlt", imageAlt);
-
     if (isFormComplete) {
-      ProductoServices.editarProducto(formData)
+      ProductoServices.editarProducto({
+        id,
+        title,
+        description,
+        price,
+        type: type as "mate" | "termo",
+        image,
+        imageAlt,
+      })
         .then(() => {
           navigate("/admin/productos");
         })
         .catch((error) => {
           setGeneralError(error.message);
         });
+
+      // Legacy upload flow (disabled):
+      // const stringPrice = price.toString();
+      // const formData = new FormData();
+      // formData.append("id", id || "");
+      // formData.append("title", title);
+      // formData.append("description", description);
+      // formData.append("price", stringPrice);
+      // formData.append("type", type);
+      // if (typeof image === "string") {
+      //   formData.append("image", image);
+      // } else if (image instanceof File) {
+      //   formData.append("image", image);
+      // }
+      // formData.append("imageAlt", imageAlt);
+      // ProductoServices.editarProducto(formData)
+      //   .then(() => {
+      //     navigate("/admin/productos");
+      //   })
+      //   .catch((error) => {
+      //     setGeneralError(error.message);
+      //   });
     }
   };
   useEffect(() => {
@@ -125,7 +144,7 @@ const AdminProductosEditarPage: React.FC = () => {
       setDescription(data.description);
       setPrice(data.price);
       setType(data.type);
-      setImage(data.image);
+      setImage(extractImageFileName(data.image));
       setImageAlt(data.imageAlt);
     });
   }, [id]);
@@ -134,9 +153,9 @@ const AdminProductosEditarPage: React.FC = () => {
     setIsFormComplete(
       title.length > 3 &&
         description !== "" &&
-        price >= 0 &&
+        price > 0 &&
         type !== "" &&
-        !!image &&
+        image !== "" &&
         imageAlt.length >= 3
     );
   }, [title, description, price, type, image, imageAlt]);
@@ -212,22 +231,37 @@ const AdminProductosEditarPage: React.FC = () => {
         </div>
         <div className="mb-3">
           <label className="form-label">Imagen del producto</label>
-          {typeof image === "string" ? (
+          {image ? (
             <CustomImage
-              image={image}
+              image={buildProductImageUrl(image)}
               alt={imageAlt}
               className={styles.image}
             />
-          ) : (
-            <p>Nueva imagen agregada</p>
-          )}
-          <input
+          ) : null}
+          <select
+            className="form-control"
+            name="image"
+            value={image}
+            onChange={handleImageChange}
+          >
+            <option value="" disabled>
+              Selecciona una imagen
+            </option>
+            {PRODUCT_IMAGE_OPTIONS.map((option) => (
+              <option key={option.fileName} value={option.fileName}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+          <ErrorMessage error={imageError} />
+
+          {/* Legacy upload flow (disabled): */}
+          {/* <input
             className="form-control"
             type="file"
             accept="image/*"
             onChange={handleImageChange}
-          />
-          <ErrorMessage error={imageError} />
+          /> */}
         </div>
 
         <div className="mb-3">

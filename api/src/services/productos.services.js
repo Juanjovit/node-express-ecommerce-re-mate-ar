@@ -110,28 +110,30 @@ async function editarProductoVendido(id, producto) {
 async function eliminarProducto(id) {
   await client.connect();
 
-  const productoInCompra = await client
-    .db(MONGO_DB_NAME)
-    .collection("Compras")
-    .findOne({ "compra._id": id });
-
-  if (!productoInCompra) {
-    const producto = await client
-      .db(MONGO_DB_NAME)
-      .collection("Productos")
-      .findOne({ _id: new ObjectId(id) });
-
-    const splitUrl = producto.image.split("/");
-    const imageName = splitUrl[splitUrl.length - 1];
-
-    const imagePath = path.join("public", "images", imageName);
-
-    fs.unlink(imagePath, (err) => {
-      if (err) {
-        throw new Error("Error al eliminar la imagen");
-      }
-    });
-  }
+  // Runtime image deletion is disabled for hosting compatibility.
+  // Legacy behavior (local upload flow):
+  // const productoInCompra = await client
+  //   .db(MONGO_DB_NAME)
+  //   .collection("Compras")
+  //   .findOne({ "compra._id": id });
+  //
+  // if (!productoInCompra) {
+  //   const producto = await client
+  //     .db(MONGO_DB_NAME)
+  //     .collection("Productos")
+  //     .findOne({ _id: new ObjectId(id) });
+  //
+  //   const splitUrl = producto.image.split("/");
+  //   const imageName = splitUrl[splitUrl.length - 1];
+  //
+  //   const imagePath = path.join("public", "images", imageName);
+  //
+  //   fs.unlink(imagePath, (err) => {
+  //     if (err) {
+  //       throw new Error("Error al eliminar la imagen");
+  //     }
+  //   });
+  // }
 
   const result = await client
     .db(MONGO_DB_NAME)

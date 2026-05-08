@@ -2,10 +2,10 @@
   "name": "tp2",
   "version": "1.0.0",
   "description": "",
-  "main": "expressServer.js",
+  "main": "src/server.js",
   "type": "module",
   "scripts": {
-    "server": "cls && nodemon src/expressServer.js"
+    "server": "cls && nodemon src/server.js"
   },
   "author": "Juan José Vitali",
   "license": "MIT",

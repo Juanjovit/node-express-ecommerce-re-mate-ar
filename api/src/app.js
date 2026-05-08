@@ -8,7 +8,7 @@ import cors from "cors";
 import ProductosApiRouter from "./routes/productos.api.routes.js";
 import UsuariosApiRouter from "./routes/usuarios.api.routes.js";
 import ComprasApiRouter from "./routes/compras.api.routes.js";
-import { CORS_ORIGIN, PORT } from "./config/env.js";
+import { CORS_ORIGIN } from "./config/env.js";
 
 const app = express();
 app.set("view engine", "ejs");
@@ -43,6 +43,4 @@ app.use("/api/productos", ProductosApiRouter);
 app.use("/api/usuarios", UsuariosApiRouter);
 app.use("/api/compras", ComprasApiRouter);
 
-app.listen(PORT, function () {
-  console.log(`El servidor esta ejecutando! http://localhost:${PORT}`);
-});
+export default app;

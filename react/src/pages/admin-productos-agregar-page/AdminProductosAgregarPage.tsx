@@ -7,6 +7,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ErrorMessage } from "../../components/ErrorMessage/ErrorMessage";
 import { CustomButton } from "../../components/CustomButton/CustomButton.js";
+import { CustomImage } from "../../components/CustomImage/CustomImage.js";
+import {
+  PRODUCT_IMAGE_OPTIONS,
+  buildProductImageUrl,
+} from "../../constants/product-images.js";
 
 const AdminProductosAgregarPage: React.FC = () => {
   const navigate = useNavigate();
@@ -15,7 +20,7 @@ const AdminProductosAgregarPage: React.FC = () => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
   const [type, setType] = useState("");
-  const [image, setImage] = useState<File | null>(null);
+  const [image, setImage] = useState("");
   const [imageAlt, setImageAlt] = useState("");
 
   const [titleError, setTitleError] = useState("");
@@ -51,9 +56,8 @@ const AdminProductosAgregarPage: React.FC = () => {
     if (typeError) setTypeError("");
   };
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0] || null;
-    setImage(file);
+  const handleImageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setImage(e.target.value);
     if (imageError) setImageError("");
   };
 
@@ -91,24 +95,38 @@ const AdminProductosAgregarPage: React.FC = () => {
       );
     }
 
-    const stringPrice = price.toString();
-
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("description", description);
-    formData.append("price", stringPrice);
-    formData.append("type", type);
-    formData.append("image", image as Blob);
-    formData.append("imageAlt", imageAlt);
-
     if (isFormComplete) {
-      ProductoServices.agregarProducto(formData)
+      ProductoServices.agregarProducto({
+        title,
+        description,
+        price,
+        type: type as "mate" | "termo",
+        image,
+        imageAlt,
+      })
         .then(() => {
           navigate("/admin/productos");
         })
         .catch((error) => {
           setGeneralError(error.message);
         });
+
+      // Legacy upload flow (disabled):
+      // const stringPrice = price.toString();
+      // const formData = new FormData();
+      // formData.append("title", title);
+      // formData.append("description", description);
+      // formData.append("price", stringPrice);
+      // formData.append("type", type);
+      // formData.append("image", image as Blob);
+      // formData.append("imageAlt", imageAlt);
+      // ProductoServices.agregarProducto(formData)
+      //   .then(() => {
+      //     navigate("/admin/productos");
+      //   })
+      //   .catch((error) => {
+      //     setGeneralError(error.message);
+      //   });
     }
   };
 
@@ -116,9 +134,9 @@ const AdminProductosAgregarPage: React.FC = () => {
     setIsFormComplete(
       title.length > 3 &&
         description !== "" &&
-        price >= 0 &&
+        price > 0 &&
         type !== "" &&
-        !!image &&
+        image !== "" &&
         imageAlt.length >= 3
     );
   }, [title, description, price, type, image, imageAlt]);
@@ -194,13 +212,37 @@ const AdminProductosAgregarPage: React.FC = () => {
         </div>
         <div className="mb-3">
           <label className="form-label">Imagen del producto</label>
-          <input
+          <select
+            className="form-control"
+            name="image"
+            value={image}
+            onChange={handleImageChange}
+          >
+            <option value="" disabled>
+              Selecciona una imagen
+            </option>
+            {PRODUCT_IMAGE_OPTIONS.map((option) => (
+              <option key={option.fileName} value={option.fileName}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+          {image && (
+            <CustomImage
+              image={buildProductImageUrl(image)}
+              alt={imageAlt}
+              className={styles.image}
+            />
+          )}
+          <ErrorMessage error={imageError} />
+
+          {/* Legacy upload flow (disabled): */}
+          {/* <input
             className="form-control"
             type="file"
             accept="image/*"
             onChange={handleImageChange}
-          />
-          <ErrorMessage error={imageError} />
+          /> */}
         </div>
 
         <div className="mb-3">
@@ -215,7 +257,7 @@ const AdminProductosAgregarPage: React.FC = () => {
             name="imageAlt"
             placeholder="Ingresa la descripcion de la imagen aca"
           />
-          <ErrorMessage error={titleError} />
+          <ErrorMessage error={imageAltError} />
         </div>
 
         <ErrorMessage error={generalError} />

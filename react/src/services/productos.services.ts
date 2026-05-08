@@ -1,5 +1,15 @@
 import { API_BASE_URL } from "./api";
 
+interface ProductoPayload {
+  id?: string;
+  title: string;
+  description: string;
+  price: number;
+  type: "mate" | "termo";
+  image: string;
+  imageAlt: string;
+}
+
 async function getAllPublicProductos() {
   return fetch(`${API_BASE_URL}/api/productos`, {
     method: "GET",
@@ -47,10 +57,13 @@ async function getProductoById({ id }: { id: string | undefined }) {
   }).then((response) => response.json());
 }
 
-async function agregarProducto(producto: FormData) {
+async function agregarProducto(producto: ProductoPayload) {
   return fetch(`${API_BASE_URL}/api/productos/agregar/`, {
     method: "POST",
-    body: producto,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(producto),
   }).then((response) =>
     response.json().then((data) => {
       if (!response.ok) {
@@ -78,10 +91,13 @@ async function eliminarProducto(id: string) {
   );
 }
 
-async function editarProducto(producto: FormData) {
+async function editarProducto(producto: ProductoPayload) {
   return fetch(`${API_BASE_URL}/api/productos/editar/`, {
     method: "PUT",
-    body: producto,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(producto),
   }).then((response) =>
     response.json().then((data) => {
       if (!response.ok) {

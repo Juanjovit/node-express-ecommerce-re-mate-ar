@@ -34,5 +34,4 @@ react/dist/
 api/node_modules/
 
 # Local planning and handover docs
-GUIDE_DEPLOYMENT_PLAN.md
-HANDOVER_JOURNAL.md
+.local-docs/
